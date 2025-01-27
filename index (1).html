@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mack Vihokrut | Speaker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background: 0 0% 0%;
+            --foreground: 0 0% 100%;
+            --card: 0 0% 4%;
+            --card-foreground: 0 0% 100%;
+            --popover: 0 0% 4%;
+            --popover-foreground: 0 0% 100%;
+            --primary: 24 100% 41%;
+            --primary-foreground: 0 0% 100%;
+            --secondary: 0 0% 15%;
+            --secondary-foreground: 0 0% 100%;
+            --muted: 0 0% 15%;
+            --muted-foreground: 0 0% 65%;
+            --accent: 24 100% 41%;
+            --accent-foreground: 0 0% 100%;
+            --destructive: 0 85% 60%;
+            --destructive-foreground: 0 0% 100%;
+            --border: 0 0% 15%;
+            --input: 0 0% 15%;
+            --ring: 24 100% 41%;
+            --radius: 0.5rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: black;
+            color: white;
+            line-height: 1.5;
+        }
+        
+        h1, h2, h3, .font-bebas {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 0.02em;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #D35400;
+            color: white;
+            text-decoration: none;
+            border-radius: 0.25rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #A04000;
+        }
+        
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        .watch-mack {
+            background-color: #f3f4f6;
+            padding: 6rem 0;
+            text-align: center;
+        }
+        
+        .watch-mack h2 {
+            font-size: 3rem;
+            color: #111827;
+            margin-bottom: 2rem;
+        }
+        
+        .about {
+            background-color: white;
+            color: black;
+            padding: 6rem 0;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .about h2, .about h3 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .speaking-topics {
+            background-color: #f3f4f6;
+            padding: 6rem 0;
+        }
+        
+        .speaking-topics h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #111827;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .topic-card {
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+        }
+        
+        .topic-card h3 {
+            font-size: 2.5rem;
+            color: #D35400;
+            margin-bottom: 1rem;
+        }
+        
+        .reasons {
+            max-width: 48rem;
+            margin: 4rem auto 0;
+        }
+        
+        .reasons h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .reason {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .reason-icon {
+            width: 4rem;
+            height: 4rem;
+            background-color: #00B2FF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .testimonials {
+            background-color: white;
+            color: black;
+            padding: 6rem 0;
+        }
+        
+        .testimonials h2 {
+            font-size: 3rem;
+            color: #D35400;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+        }
+        
+        .contact {
+            background-color: #D35400;
+            padding: 6rem 0;
+        }
+        
+        .contact h2 {
+            font-size: 3rem;
+            color: #111827;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact p {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+        
+        .resources {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 4rem;
+        }
+        
+        .resource-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s;
+        }
+        
+        .resource-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .contact form {
+            max-width: 32rem;
+            margin: 0 auto;
+        }
+        
+        .contact input,
+        .contact textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 0.25rem;
+        }
+        
+        .contact input::placeholder,
+        .contact textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        footer {
+            background-color: white;
+            color: black;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: #4b5563;
+            text-decoration: none;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links a {
+            color: #4b5563;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .about-grid,
+            .topics-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .resources {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#" class="font-bebas">MACK VIHOKRUT</a>
+            <div>
+                <a href="#about">ABOUT</a>
+                <a href="#speaking">SPEAKING</a>
+                <a href="#contact" class="btn">BOOK MACK</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <video autoplay muted loop playsinline>
+            <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/17017674-hd_1920_1080_60fps-t4g4if1zsdFJ9ykuk9cvSyQO7nE3RQ.mp4" type="video/mp4">
+        </video>
+        <div class="container hero-content">
+            <h1>STUDENT EMPOWERER.<br>EMPATHY CHAMPION.</h1>
+            <p>"To create a ripple effect of kindness, starting with you."</p>
+            <div class="marquee">
+                <div class="marquee-content">
+                    SPEAKER • EMPATH • LEADER • MENTOR • SPEAKER • EMPATH • LEADER • MENTOR • 
+                    SPEAKER • EMPATH • LEADER • MENTOR • SPEAKER • EMPATH • LEADER • MENTOR • 
+                </div>
+            </div>
+            <a href="#watch-mack" class="btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                MACK IN ACTION
+            </a>
+        </div>
+    </section>
+
+    <section id="watch-mack" class="watch-mack">
+        <div class="container">
+            <h2>WATCH MACK IN ACTION</h2>
+            <div>
+                <button class="btn" onclick="alert('Video playback functionality to be implemented')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    WATCH MACK IN ACTION
+                </button>
+                <a href="#contact" class="btn">PARTNER WITH MACK →</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>MEET MACK</h2>
+            <div class="about-grid">
+                <div>
+                    <p>Mack Vihokrut is a former Buddhist monk, higher education advocate, and researcher. Raised with a strong foundation in mindfulness, Mack helps students from underrepresented backgrounds find their path.</p>
+                    <p>With experience at Johns Hopkins University and New York University, Mack's expertise includes education, healthcare, and research. Having overcome personal traumas, Mack raises awareness on mentorship, empathy, and mental health services for young people.</p>
+                    <p>Mack is a TEDx speaker, whose viral "How to Save Your Relationship in 5 Minutes?" talk has inspired audiences worldwide. He is also a sought-after author, with his upcoming book "Unreasonable Empathy" exploring radical compassion in education and beyond.</p>
+                    <h3>WHY MACK</h3>
+                    <p>Do your higher education organizations struggle with disconnection and empathy deficits among students, faculty, and staff? Are these relational challenges hindering academic success, student well-being, and institutional progress?</p>
+                    <p>Mack helps colleges and universities build stronger relationships. He has personal experience showing kindness and empathy to others. Mack learned that when we care deeply about others, amazing things can happen. Now, Mack can help your organization create a more supportive community, where students and staff thrive.</p>
+                    <h3>WHAT TO EXPECT</h3>
+                    <p>Mack's keynote will take your campus community on a transformative journey of self-discovery, empathy, and connection. Afterward, they'll leave with a renewed sense of purpose and practical strategies to foster deeper relationships and empathy. His message will challenge their perspective on relationships and have them embracing Mack's core principle: empathy is the foundation of human connection. And with the right mindset, moments of conflict become opportunities for growth and understanding.</p>
+                    <p>With Mack leading the charge, your campus community's goal of creating a culture of empathy and compassion is within reach.</p>
+                </div>
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_0670%20(1)%20(1)-K4JInRc01awR2TMDHmAxsIMO4UZpA8.png" alt="Mack Vihokrut Speaking" style="max-width: 100%; height: auto;">
+            </div>
+        </div>
+    </section>
+
+    <section id="speaking" class="speaking-topics">
+        <div class="container">
+            <h2>SPEAKING TOPICS</h2>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h3>EMPATHY IN EDUCATION</h3>
+                    <p>Learn the principles of empathetic teaching and how to create inclusive learning environments that foster academic success, social-emotional growth, and positive relationships.</p>
+                    <p><strong>OUTCOMES</strong></p>
+                    <ul>
+                        <li>Educators inspired to prioritize empathy and inclusivity</li>
+                        <li>Deeper understanding of empathy's impact on student success</li>
+                        <li>Practical strategies for inclusive learning environments</li>
+                        <li>Empowered to create a cultural shift in communities</li>
+                    </ul>
+                </div>
+                <div class="topic-card">
+                    <h3>BUILDING RESILIENCE</h3>
+                    <p>Discover strategies for overcoming adversity and building mental toughness in both personal and professional settings.</p>
+                    <p><strong>OUTCOMES</strong></p>
+                    <ul>
+                        <li>Develop resilience in the face of challenges</li>
+                        <li>Build mental toughness for personal and professional growth</li>
+                        <li>Learn strategies to overcome adversity and setbacks</li>
+                        <li>Cultivate a growth mindset for long-term success</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="reasons">
+                <h2>REASONS TO BOOK ME</h2>
+                <div class="reason">
+                    <div class="reason-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </div>
+                    <div>
+                        <h3>CUSTOM-CRAFTED</h3>
+                        <p>I take the time to learn about your organization, audience, and key objectives. (I may even drop by one of your stores, labs or offices for an inside peek.)</p>
+                    </div>
+                </div>
+                <div class="reason">
+                    <div class="reason-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <div>
+                        <h3>ENGAGING</h3>
+                        <p>My talks are interactive, fast-moving, and entertaining. High-level research meets high-touch relatability.</p>
+                    </div>
+                </div>
+                <div class="reason">
+                    <div class="reason-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                    </div>
+                    <div>
+                        <h3>EDUCATOR FIRST</h3>
+                        <p>An award-winning educator and researcher, I understand how to make learning stick, no matter the length of the talk or training.</p>
+                    </div>
+                </div>
+                <div class="reason">
+                    <div class="reason-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <div>
+                        <h3>REAL TAKEAWAY VALUE</h3>
+                        <p>Your audience will leave with the right tools, frameworks, and techniques that can be immediately applied to real-world challenges.</p>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="#contact" class="btn">BOOK MACK</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2>TESTIMONIALS</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D35400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;"><path d="M10 11h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v4m0 0 3 3m-3-3 3-3"></path><path d="M21 11h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v4m0 0 3 3m-3-3 3-3"></path><path d="M10 21h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v4m0 0 3 3m-3-3 3-3"></path><path d="M21 21h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v4m0 0 3 3m-3-3 3-3"></path></svg>
+                    <p>"Mack's keynote speech was transformative for our leadership team. His insights on building high-performance teams have already made a significant impact on our organization."</p>
+                    <div style="display: flex; align-items: center; margin-top: 1rem;">
+                        <img src="/placeholder.svg?height=50&width=50" alt="Sarah Chen" width="50" height="50" style="border-radius: 50%; margin-right: 1rem;">
+                        <div>
+                            <strong>Sarah Chen</strong>
+                            <p>CEO, TechVision Global</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D35400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;"><path d="M10 11h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v4m0 0 3 3m-3-3 3-3"></path><path d="M21 11h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v4m0 0 3 3m-3-3 3-3"></path><path d="M10 21h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v4m0 0 3 3m-3-3 3-3"></path><path d="M21 21h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v4m0 0 3 3m-3-3 3-3"></path></svg>
+                    <p>"The strategies and insights Mack shared during our executive retreat were invaluable. His approach to leadership and innovation is both practical and inspiring."</p>
+                    <div style="display: flex; align-items: center; margin-top: 1rem;">
+                        <img src="/placeholder.svg?height=50&width=50" alt="Michael Rodriguez" width="50" height="50" style="border-radius: 50%; margin-right: 1rem;">
+                        <div>
+                            <strong>Michael Rodriguez</strong>
+                            <p>COO, Innovation Corp</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D35400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;"><path d="M10 11h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v4m0 0 3 3m-3-3 3-3"></path><path d="M21 11h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v4m0 0 3 3m-3-3 3-3"></path><path d="M10 21h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v4m0 0 3 3m-3-3 3-3"></path><path d="M21 21h-4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v4m0 0 3 3m-3-3 3-3"></path></svg>
+                    <p>"Mack's workshop on resilience and leadership excellence was exactly what our team needed. His energy and expertise made the session both engaging and actionable."</p>
+                    <div style="display: flex; align-items: center; margin-top: 1rem;">
+                        <img src="/placeholder.svg?height=50&width=50" alt="Emily Watson" width="50" height="50" style="border-radius: 50%; margin-right: 1rem;">
+                        <div>
+                            <strong>Emily Watson</strong>
+                            <p>Director, Future Leaders Institute</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>EVENT PLANNER RESOURCES</h2>
+            <p>Access everything you need to plan your event with Mack</p>
+            <div class="resources">
+                <button class="resource-btn">MACK'S BIO</button>
+                <button class="resource-btn">SPEAKER PACKET</button>
+                <button class="resource-btn">APPROVED IMAGES</button>
+                <button class="resource-btn">STAGE INTRO</button>
+            </div>
+            <h2>WORK WITH MACK</h2>
+            <p>Please tell me about your request and someone from my team will follow up with you shortly.</p>
+            <form>
+                <input type="text" placeholder="First Name">
+                <input type="text" placeholder="Last Name">
+                <input type="text" placeholder="Organization">
+                <input type="email" placeholder="Email">
+                <textarea placeholder="Message" rows="4"></textarea>
+                <button type="submit" class="btn" style="width: 100%; background-color: #5d5e5e;">SUBMIT</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#speaking">Speaking</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#contact">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                </a>
+                <a href="#" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="#" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+            </div>
+            <p>&copy; 2025 Mack Vihokrut. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
